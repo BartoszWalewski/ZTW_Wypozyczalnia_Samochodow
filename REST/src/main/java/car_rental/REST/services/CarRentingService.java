@@ -133,7 +133,7 @@ public class CarRentingService implements ICarRentingService {
             int id;
             if (currentUser.getClient() == null){
                 isAdmin = true;
-                id = -1;
+                id = 7;
             }
             else {
                 isAdmin = false;
@@ -150,8 +150,17 @@ public class CarRentingService implements ICarRentingService {
     }
 
     @Override
-    public List<Rental> getRentals() {
-        return rentalDao.findAll();
+    public List<RentalModel> getRentals() {
+        List<Rental> rentals = rentalDao.findAll();
+        List<RentalModel> rentalModels = new ArrayList<>();
+        for (Rental rent:rentals) {
+
+            rentalModels.add(new RentalModel(rent.getId(), rent.getClient().getId(), rent.getCar().getId(),
+                    rent.getRentalStart(), rent.getRentalEnd(), rent.isEnded(), rent.getDailyPrice(),
+                    rent.getCar().getBrand() + " " + rent.getCar().getModel()));
+
+        }
+        return rentalModels;
     }
 
     @Override

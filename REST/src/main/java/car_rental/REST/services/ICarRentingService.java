@@ -61,7 +61,7 @@ public interface ICarRentingService {
                 RENTAL
      */
 
-    public abstract List<Rental> getRentals();
+    public abstract List<RentalModel> getRentals();
 
     public abstract List<RentalModel> getUserRentals(int client_id);
 
