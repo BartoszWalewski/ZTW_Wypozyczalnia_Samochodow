@@ -59,6 +59,7 @@ public class CarRentingController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     @PatchMapping(path = "/car")
     public ResponseEntity<Object> updateCar(@RequestBody Car car) {
 
@@ -119,6 +120,11 @@ public class CarRentingController {
     @GetMapping(value = "/rental/{id}")
     public ResponseEntity<Object> getRental(@PathVariable int id) {
         return new ResponseEntity<>(carService.getRental(id), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/rental")
+    public ResponseEntity<Object> GetAllRentals() {
+        return new ResponseEntity<>(carService.getRentals(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/rental/client/{id}")
